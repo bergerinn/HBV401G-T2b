@@ -13,17 +13,17 @@ public class HotelManagement {
     /**
      *
      */
-    private void searchQuery;
+    private SearchQuery mysearchQuery;
 
     /**
      *
      */
-    private void book;
+    private Booking book;
 
     /**
      *
      */
-    private void hotelStays;
+    private HotelStay[] hotelStays;
 
 
 
@@ -44,7 +44,6 @@ public class HotelManagement {
      */
     public void bookRoom(HotelStay theRoomToBook, Booking book) {
         // TODO implement here
-        return null;
     }
 
 
