@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class HotelManagementTest {
 
     MockSearchQuery number1;
-    private HotelManagement theManager;
+    private MockHotelManagement theManager;
     private HotelStay[] mystays;
 
     private Date checkin = new Date();
@@ -31,7 +31,8 @@ public class HotelManagementTest {
 
     @org.junit.Test
     public void testSearchResults() throws Exception {
-        assertArrayEquals(mystays, theManager.searchResults(number1));
+
+        assertEquals(mystays, theManager.searchResults(number1));
 
     }
 }

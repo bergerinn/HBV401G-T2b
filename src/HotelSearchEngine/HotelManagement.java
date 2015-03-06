@@ -1,5 +1,7 @@
 package HotelSearchEngine;
 
+import Tests.MockSearchQuery;
+
 import java.util.*;
 /**
  * Created by Andri on 05/03/15.

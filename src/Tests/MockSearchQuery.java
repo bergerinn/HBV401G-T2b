@@ -29,6 +29,4 @@ public class MockSearchQuery{
         this.totalPrice = totPrice;
 
     }
-
-
 }
