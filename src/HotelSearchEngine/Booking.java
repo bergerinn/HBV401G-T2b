@@ -23,27 +23,27 @@ public class Booking {
     /**
      *
      */
-    private void name;
+    private String name;
 
     /**
      *
      */
-    private void email;
+    private String email;
 
     /**
      *
      */
-    private void phone;
+    private String phone; //Maybe we want this as int
 
     /**
      *
      */
-    private void roomId;
+    private int roomId;
 
     /**
      *
      */
-    private void hotelId;
+    private String hotelId;
 
     /**
      * @param name
@@ -54,53 +54,42 @@ public class Booking {
      * @return
      */
     public void InsertIntoDB(String name, String email, String phone, int roomId, String hotelId) {
-        // TODO implement here
-        return null;
+
     }
 
     /**
      * @param name
-     * @return
      */
     public void setName(String name) {
-        // TODO implement here
-        return null;
+        this.name = name;
     }
 
     /**
      * @param email
-     * @return
      */
     public void setEmail(String email) {
-        // TODO implement here
-        return null;
+        this.email = email;
     }
 
     /**
      * @param phone
-     * @return
      */
     public void setPhone(String phone) {
-        // TODO implement here
-        return null;
+        this.phone = phone;
     }
 
     /**
      * @param roomid
-     * @return
      */
     public void setRoomId(int roomid) {
-        // TODO implement here
-        return null;
+        this.roomId = roomid;
     }
 
     /**
      * @param hotelid
-     * @return
      */
     public void setHotelId(String hotelid) {
-        // TODO implement here
-        return null;
+        this.hotelId = hotelid;
     }
 
 }

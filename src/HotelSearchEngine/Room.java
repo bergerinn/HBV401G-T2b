@@ -18,38 +18,36 @@ public class Room {
     /**
      *
      */
-    private void typeOfRoom;
+    private String typeOfRoom;
 
     /**
      *
      */
-    private void roomPrice;
+    private int roomPrice;
 
     /**
      *
      */
-    private void isOccupied;
+    private boolean isOccupied;
 
     /**
      *
      */
-    private void roomId;
+    private int roomId;
 
     /**
      * @param isOccupied
      * @return
      */
     public void setOccupyStatus(boolean isOccupied) {
-        // TODO implement here
-        return null;
+        this.isOccupied = isOccupied;
     }
 
     /**
      * @return
      */
     public int getRoomId() {
-        // TODO implement here
-        return 0;
+        return this.roomId;
     }
 
 }

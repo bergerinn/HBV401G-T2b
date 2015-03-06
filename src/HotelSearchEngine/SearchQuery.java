@@ -20,49 +20,48 @@ public class SearchQuery {
     /**
      *
      */
-    private void hotelName;
+    private String hotelName;
 
     /**
      *
      */
-    private void location;
+    private String location;
 
     /**
      *
      */
-    private void rating;
+    private int rating;
 
     /**
      *
      */
-    private void wiFi;
+    private boolean wiFi;
 
     /**
      *
      */
-    private void numberOfRooms;
+    private int numberOfRooms;
 
     /**
      *
      */
-    private void checkInTime;
+    private Date checkInTime;
 
     /**
      *
      */
-    private void checkOutTime;
+    private Date checkOutTime;
 
     /**
      *
      */
-    private void totalPrice;
+    private int totalPrice;
 
     /**
      * @return
      */
     public void search() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -70,8 +69,7 @@ public class SearchQuery {
      * @return
      */
     public void setHotelName(String name) {
-        // TODO implement here
-        return null;
+        this.hotelName = name;
     }
 
     /**
@@ -79,8 +77,7 @@ public class SearchQuery {
      * @return
      */
     public void setLocation(String loc) {
-        // TODO implement here
-        return null;
+        this.location = loc;
     }
 
     /**
@@ -88,8 +85,7 @@ public class SearchQuery {
      * @return
      */
     public void setRating(int rating) {
-        // TODO implement here
-        return null;
+        this.rating = rating;
     }
 
     /**
@@ -97,8 +93,7 @@ public class SearchQuery {
      * @return
      */
     public void setWiFi(boolean yesOrNo) {
-        // TODO implement here
-        return null;
+        this.wiFi = yesOrNo;
     }
 
     /**
@@ -106,8 +101,7 @@ public class SearchQuery {
      * @return
      */
     public void setNumRooms(int roomCount) {
-        // TODO implement here
-        return null;
+        this.numberOfRooms = roomCount;
     }
 
     /**
@@ -115,8 +109,7 @@ public class SearchQuery {
      * @return
      */
     public void setCheckInTime(Date time) {
-        // TODO implement here
-        return null;
+        this.checkInTime = time;
     }
 
     /**
@@ -124,8 +117,7 @@ public class SearchQuery {
      * @return
      */
     public void setCheckOutTime(Date time) {
-        // TODO implement here
-        return null;
+        this.checkOutTime = time;
     }
 
     /**
@@ -133,8 +125,7 @@ public class SearchQuery {
      * @return
      */
     public void setTotalPrice(int price) {
-        // TODO implement here
-        return null;
+        this.totalPrice = price;
     }
 
 }
