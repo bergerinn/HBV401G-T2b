@@ -57,7 +57,6 @@ public class HotelStay {
 
     /**
      * @param name
-     * @return
      */
     public void setHotelName(String name) {
         this.hotelName = name;
@@ -65,7 +64,6 @@ public class HotelStay {
 
     /**
      * @param loc
-     * @return
      */
     public void setLocation(String loc) {
         this.location = loc;
@@ -73,7 +71,6 @@ public class HotelStay {
 
     /**
      * @param rating
-     * @return
      */
     public void setRating(int rating) {
         this.rating = rating;
@@ -81,7 +78,6 @@ public class HotelStay {
 
     /**
      * @param yesOrNo
-     * @return
      */
     public void setWiFi(boolean yesOrNo) {
         this.wiFi = yesOrNo;
@@ -89,7 +85,6 @@ public class HotelStay {
 
     /**
      * @param room
-     * @return
      */
     public void setRoom(Room room) {
 
@@ -97,7 +92,6 @@ public class HotelStay {
 
     /**
      * @param time
-     * @return
      */
     public void setCheckInTime(Date time) {
         this.checkInTime = time;
@@ -105,7 +99,6 @@ public class HotelStay {
 
     /**
      * @param time
-     * @return
      */
     public void setCheckOutTime(Date time) {
         this.checkOutTime = time;
@@ -113,7 +106,6 @@ public class HotelStay {
 
     /**
      * @param price
-     * @return price of stay
      */
     public void setTotalPrice(int price) {
         this.totalPrice = price;
