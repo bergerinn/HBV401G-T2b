@@ -39,7 +39,6 @@ public class HotelManagement {
     /**
      * @param theRoomToBook
      * @param book
-     * @return
      */
     public void bookRoom(HotelStay theRoomToBook, Booking book) {
 
