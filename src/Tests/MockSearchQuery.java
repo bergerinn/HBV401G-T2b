@@ -18,9 +18,6 @@ public class MockSearchQuery{
     private Date checkOutTime;
     private int totalPrice;
 
-    private SearchQuery myQuery = new SearchQuery();
-
-
     public MockSearchQuery(String hName, String loc, int rating, boolean hasWiFi, int numRooms, Date chkIn, Date chkOut, int totPrice){
         this.hotelName = hName;
         this.location = loc;
