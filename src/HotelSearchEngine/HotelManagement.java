@@ -6,6 +6,7 @@ import java.util.*;
  */
 public class HotelManagement {
 
+    //Smiður
     public HotelManagement() {
     }
 
