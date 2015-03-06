@@ -113,7 +113,7 @@ public class HotelStay {
 
     /**
      * @param price
-     * @return
+     * @return price of stay
      */
     public void setTotalPrice(int price) {
         this.totalPrice = price;
