@@ -1,11 +1,6 @@
 package Tests;
-package HotelSearchEngine;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-public class HotelManagementTest implements  {
+public class HotelManagementTest{
 
 
     @org.junit.Before
