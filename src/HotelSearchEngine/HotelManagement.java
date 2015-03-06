@@ -25,9 +25,6 @@ public class HotelManagement {
      */
     private HotelStay[] hotelStays;
 
-
-
-
     /**
      * @param searchObject
      * @return
