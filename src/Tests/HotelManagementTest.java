@@ -26,13 +26,11 @@ public class HotelManagementTest {
         theManager = null;
         number1 = null;
         mystays = null;
-
     }
 
     @org.junit.Test
     public void testSearchResults() throws Exception {
 
         assertEquals(mystays, theManager.searchResults(number1));
-
     }
 }
