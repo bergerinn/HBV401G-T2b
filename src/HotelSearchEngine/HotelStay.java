@@ -17,42 +17,42 @@ public class HotelStay {
     /**
      *
      */
-    private void hotelName;
+    private String hotelName;
 
     /**
      *
      */
-    private void location;
+    private String location;
 
     /**
      *
      */
-    private void rating;
+    private int rating;
 
     /**
      *
      */
-    private void wiFi;
+    private boolean wiFi;
 
     /**
      *
      */
-    private void rooms;
+    private Room[] rooms;
 
     /**
      *
      */
-    private void checkInTime;
+    private Date checkInTime;
 
     /**
      *
      */
-    private void checkOutTime;
+    private Date checkOutTime;
 
     /**
      *
      */
-    private void totalPrice;
+    private int totalPrice;
 
 
     /**
@@ -60,8 +60,7 @@ public class HotelStay {
      * @return
      */
     public void setHotelName(String name) {
-        // TODO implement here
-        return null;
+        this.hotelName = name;
     }
 
     /**
@@ -69,8 +68,7 @@ public class HotelStay {
      * @return
      */
     public void setLocation(String loc) {
-        // TODO implement here
-        return null;
+        this.location = loc;
     }
 
     /**
@@ -78,8 +76,7 @@ public class HotelStay {
      * @return
      */
     public void setRating(int rating) {
-        // TODO implement here
-        return null;
+        this.rating = rating;
     }
 
     /**
@@ -87,8 +84,7 @@ public class HotelStay {
      * @return
      */
     public void setWiFi(boolean yesOrNo) {
-        // TODO implement here
-        return null;
+        this.wiFi = yesOrNo;
     }
 
     /**
@@ -96,8 +92,7 @@ public class HotelStay {
      * @return
      */
     public void setRoom(Room room) {
-        // TODO implement here
-        return null;
+
     }
 
     /**
@@ -105,8 +100,7 @@ public class HotelStay {
      * @return
      */
     public void setCheckInTime(Date time) {
-        // TODO implement here
-        return null;
+        this.checkInTime = time;
     }
 
     /**
@@ -114,8 +108,7 @@ public class HotelStay {
      * @return
      */
     public void setCheckOutTime(Date time) {
-        // TODO implement here
-        return null;
+        this.checkOutTime = time;
     }
 
     /**
@@ -123,72 +116,63 @@ public class HotelStay {
      * @return
      */
     public void setTotalPrice(int price) {
-        // TODO implement here
-        return null;
+        this.totalPrice = price;
     }
 
     /**
      * @return
      */
     public String getHotelName() {
-        // TODO implement here
-        return "";
+        return hotelName;
     }
 
     /**
      * @return
      */
     public String getLocation() {
-        // TODO implement here
-        return "";
+        return location;
     }
 
     /**
      * @return
      */
     public int getRating() {
-        // TODO implement here
-        return 0;
+        return rating;
     }
 
     /**
      * @return
      */
     public boolean getWiFi() {
-        // TODO implement here
-        return false;
+        return wiFi;
     }
 
     /**
      * @return
      */
-    public Room getRooms() {
-        // TODO implement here
-        return null;
+    public Room[] getRooms() {
+        return rooms;
     }
 
     /**
      * @return
      */
     public Date getCheckInTime() {
-        // TODO implement here
-        return null;
+        return checkInTime;
     }
 
     /**
      * @return
      */
     public Date getCheckOutTime() {
-        // TODO implement here
-        return null;
+        return checkOutTime;
     }
 
     /**
      * @return
      */
     public int getTotalPrice() {
-        // TODO implement here
-        return 0;
+        return totalPrice;
     }
 
 }
