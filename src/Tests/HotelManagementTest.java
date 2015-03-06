@@ -12,7 +12,7 @@ public class HotelManagementTest{
     public void tearDown() throws Exception {
 
     }
-
+    //
     @org.junit.Test
     public void testSearchResults() throws Exception {
 
