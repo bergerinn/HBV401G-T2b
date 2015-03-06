@@ -7,7 +7,7 @@ import java.util.Date;
 
 import static org.junit.Assert.*;
 
-public class HotelManagementTest{
+public class HotelManagementTest {
 
     private MockSearchQuery number1;
     private HotelManagement theManager;
@@ -17,7 +17,7 @@ public class HotelManagementTest{
     private Date checkout = new Date(2020, 04, 12);
 
     public void setUp() throws Exception {
-        MockSearchQuery number1 = new MockSearchQuery("Grimbilkofinn", "Grimbilfjöll", 1, false, 1, checkin, checkout, 100 );
+        MockSearchQuery number1 = new MockSearchQuery("Grimbilkofinn", "Grimbilfjöll", 1, false, 1, checkin, checkout, 100);
     }
 
     @org.junit.After
@@ -30,7 +30,7 @@ public class HotelManagementTest{
 
     @org.junit.Test
     public void testSearchResults() throws Exception {
-        assertArrayEquals(HotelStay[] mystays, theManager.searchResults(MockSearchQuery number1));
+        assertArrayEquals(HotelStay[]mystays, theManager.searchResults(MockSearchQuery number1));
 
     }
 }
