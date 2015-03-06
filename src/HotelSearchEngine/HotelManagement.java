@@ -42,6 +42,7 @@ public class HotelManagement {
      * @return
      */
     public void bookRoom(HotelStay theRoomToBook, Booking book) {
+
     }
 
 
