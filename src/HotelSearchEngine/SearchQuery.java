@@ -58,7 +58,7 @@ public class SearchQuery {
     private int totalPrice;
 
     /**
-     * @return
+     *
      */
     public void search() {
         // TODO implement here
@@ -66,7 +66,6 @@ public class SearchQuery {
 
     /**
      * @param name
-     * @return
      */
     public void setHotelName(String name) {
         this.hotelName = name;
@@ -74,7 +73,6 @@ public class SearchQuery {
 
     /**
      * @param loc
-     * @return
      */
     public void setLocation(String loc) {
         this.location = loc;
@@ -82,7 +80,6 @@ public class SearchQuery {
 
     /**
      * @param rating
-     * @return
      */
     public void setRating(int rating) {
         this.rating = rating;
@@ -90,7 +87,6 @@ public class SearchQuery {
 
     /**
      * @param yesOrNo
-     * @return
      */
     public void setWiFi(boolean yesOrNo) {
         this.wiFi = yesOrNo;
@@ -98,7 +94,6 @@ public class SearchQuery {
 
     /**
      * @param roomCount
-     * @return
      */
     public void setNumRooms(int roomCount) {
         this.numberOfRooms = roomCount;
@@ -106,7 +101,6 @@ public class SearchQuery {
 
     /**
      * @param time
-     * @return
      */
     public void setCheckInTime(Date time) {
         this.checkInTime = time;
@@ -114,7 +108,6 @@ public class SearchQuery {
 
     /**
      * @param time
-     * @return
      */
     public void setCheckOutTime(Date time) {
         this.checkOutTime = time;
@@ -122,7 +115,6 @@ public class SearchQuery {
 
     /**
      * @param price
-     * @return
      */
     public void setTotalPrice(int price) {
         this.totalPrice = price;
