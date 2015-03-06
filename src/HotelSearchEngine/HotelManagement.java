@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class HotelManagement {
 
-    //Smiður
+
     public HotelManagement() {
     }
 
@@ -33,7 +33,6 @@ public class HotelManagement {
      * @return
      */
     public HotelStay searchResults(SearchQuery searchObject) {
-        // TODO implement here
         return null;
     }
 
@@ -43,7 +42,6 @@ public class HotelManagement {
      * @return
      */
     public void bookRoom(HotelStay theRoomToBook, Booking book) {
-        // TODO implement here
     }
 
 
