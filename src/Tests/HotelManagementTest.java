@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class HotelManagementTest {
 
     MockSearchQuery number1;
-    private MockHotelManagement theManager;
+    HotelManagement theManager;
     private HotelStay[] mystays;
 
     private Date checkin = new Date();
