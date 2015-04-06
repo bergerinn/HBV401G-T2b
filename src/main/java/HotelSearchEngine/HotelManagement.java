@@ -17,7 +17,7 @@ public class HotelManagement {
 
 
 
-    public void search(SearchQuery searchObject) {
+    public HotelStay search(SearchQuery searchObject) {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
 
@@ -28,6 +28,7 @@ public class HotelManagement {
             String hotelname = searchObject.getHotelName();
             String wifi = searchObject.getHasWiFi();
 
+            int rightNumber = 2;
 
             String selectStatement = "SELECT hotels FROM Hotels WHERE location = ? AND numRooms >= ?";
 
@@ -47,19 +48,25 @@ public class HotelManagement {
 
 
             if(rating != 0){
-                prepStmt.setInt(3, rating);
+                rightNumber++;
+                prepStmt.setInt(rightNumber, rating);
             }
             if(hotelname != null){
-                prepStmt.setString(4, hotelname);
+                rightNumber++;
+                prepStmt.setString(rightNumber, hotelname);
             }
             if(wifi != null){
-                prepStmt.setString(5, wifi);
+                rightNumber++;
+                prepStmt.setString(rightNumber, wifi);
             }
 
             ResultSet rs = prepStmt.executeQuery();
 
 
             while (rs.next()) {
+
+
+
                 System.out.println(rs.getString("hotels"));
 
             }
@@ -79,14 +86,13 @@ public class HotelManagement {
 
     }
 
-    //This is main fall
     public static void main(String[] args) {
 
         HotelManagement manager = new HotelManagement();
-        manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
-        manager.mysearchQuery.setRating(3);
+        manager.mysearchQuery = new SearchQuery("Akureyri", 5);
+        manager.mysearchQuery.setRating(5);
         manager.mysearchQuery.setHotelName("Grand");
-        manager.mysearchQuery.setWiFi("yes");
+        manager.mysearchQuery.setWiFi("no");
         manager.search(manager.mysearchQuery);
     }
 
