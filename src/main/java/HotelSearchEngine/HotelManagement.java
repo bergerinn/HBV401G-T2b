@@ -24,12 +24,10 @@ public class HotelManagement {
 
             String hotellocation = searchObject.getHotelLocation();
             int numrooms = searchObject.getNumRooms();
-
             int rating = searchObject.getRating();
             String hotelname = searchObject.getHotelName();
             String wifi = searchObject.getHasWiFi();
 
-            int rightNumber = 2;
 
             String selectStatement = "SELECT * FROM Hotels WHERE location = ? AND numRooms >= ?";
 
@@ -54,6 +52,8 @@ public class HotelManagement {
             countPrepStmt.setString(1, hotellocation);
             countPrepStmt.setInt(2, numrooms);
 
+
+            int rightNumber = 2;
             if(rating != 0){
                 rightNumber++;
                 prepStmt.setInt(rightNumber, rating);
@@ -75,7 +75,6 @@ public class HotelManagement {
 
 
             int numResults = countRs.getInt("COUNT(*)");
-
             hotelStays = new HotelStay[numResults];
 
             int spot = 0;
@@ -94,12 +93,6 @@ public class HotelManagement {
 
             }
 
-            for(int i = 0; i <hotelStays.length; i++){
-
-                System.out.println(hotelStays[i].getHotelName());
-                System.out.println(hotelStays[i].getLocation());
-                System.out.println(hotelStays[i].getTotalPrice());
-            }
 
             prepStmt.close();
             connection.close();
@@ -112,8 +105,42 @@ public class HotelManagement {
     }
 
 
-    public void bookRoom(HotelStay theRoomToBook, Booking book) {
+    public boolean bookRoom(HotelStay theRoomToBook, Booking book) {
+        boolean success;
 
+        try{
+
+            connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
+
+            String name = book.getName();
+            String email = book.getEmail();
+            String phone = book.getPhone();
+            int numrooms = theRoomToBook.getRooms();
+            String hotelid = theRoomToBook.getHotelName();
+
+            String insertStatement = "INSERT INTO Booking VALUES (?,?,?,?,?)";
+
+            PreparedStatement prepStmt = connection.prepareStatement(insertStatement);
+
+            prepStmt.setString(1, name);
+            prepStmt.setString(2, email);
+            prepStmt.setString(3, phone);
+            prepStmt.setInt(4, numrooms);
+            prepStmt.setString(5, hotelid);
+
+            prepStmt.executeUpdate();
+
+
+            connection.close();
+            success = true;
+        }
+        catch(Exception e){
+            success = false;
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+
+        return success;
     }
 
     public static void main(String[] args) {
@@ -121,9 +148,29 @@ public class HotelManagement {
         HotelManagement manager = new HotelManagement();
         manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
         manager.mysearchQuery.setRating(3);
-        manager.mysearchQuery.setHotelName("Grand");
+        //manager.mysearchQuery.setHotelName("Grand");
         //manager.mysearchQuery.setWiFi("yes");
-        manager.search(manager.mysearchQuery);
+
+        HotelStay[] myhs;
+        myhs = manager.search(manager.mysearchQuery);
+
+        /*
+        for(int i = 0; i<myhs.length; i++){
+            System.out.println(myhs[i].getHotelName());
+            System.out.println(myhs[i].getRating());
+            System.out.println(myhs[i].getWiFi());
+        }
+        */
+
+        manager.book = new Booking();
+        manager.book.setName("Kári");
+        manager.book.setEmail("leikjanet@leikjanet.is");
+        manager.book.setPhone("111-1111");
+        boolean test;
+        test = manager.bookRoom(myhs[0], manager.book);
+        System.out.println(test);
+
+
     }
 
 
