@@ -7,11 +7,7 @@ package HotelSearchEngine;
 import java.util.*;
 import java.sql.*;
 
-/**
 
-/**
- *
- */
 public class SearchQuery {
 
 
@@ -22,7 +18,6 @@ public class SearchQuery {
     private int numberOfRooms;
     //private Date checkInTime;
     //private Date checkOutTime;
-    private int totalPrice;
 
 
     public SearchQuery(String loc, int numrooms) {
@@ -32,48 +27,23 @@ public class SearchQuery {
 
         this.hotelName = null;
         this.rating = 0;
-        this.totalPrice = 0;
         this.wiFi = null;
     }
 
-    /**
-     * @param name
-     */
+
     public void setHotelName(String name) {
         this.hotelName = name;
     }
 
-    /**
-     * @param loc
-     */
-    public void setLocation(String loc) {
-        this.location = loc;
-    }
-
-    /**
-     * @param rating
-     */
     public void setRating(int rating) {
         this.rating = rating;
     }
 
-    /**
-     * @param yesOrNo
-     */
     public void setWiFi(String yesOrNo) {
         this.wiFi = yesOrNo;
     }
 
-    /**
-     * @param roomCount
-     */
-    public void setNumRooms(int roomCount) {
-        this.numberOfRooms = roomCount;
-    }
 
-    /**
-     * @param
-     */
     /*public void setCheckInTime(Date time) {
         this.checkInTime = time;
     }
@@ -85,15 +55,7 @@ public class SearchQuery {
     /*public void setCheckOutTime(Date time) {
         this.checkOutTime = time;
     }
-    /*
-
-    /**
-     * @param price
-     */
-    public void setTotalPrice(int price) {
-        this.totalPrice = price;
-    }
-
+    */
 
     public String getHotelName(){
         return this.hotelName;
@@ -114,10 +76,5 @@ public class SearchQuery {
     public int getNumRooms(){
         return this.numberOfRooms;
     }
-
-    public int getTotalPrice(){
-        return this.totalPrice;
-    }
-
 
 }

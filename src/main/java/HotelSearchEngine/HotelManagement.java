@@ -85,8 +85,8 @@ public class HotelManagement {
                 hs.setRating(rs.getInt("rating"));
                 hs.setLocation(rs.getString("location"));
                 hs.setWiFi(rs.getString("wifi"));
-                hs.setNumRooms(rs.getInt("numRooms"));
-                hs.setTotalPrice(rs.getInt("numRooms") * rs.getInt("roomPrice"));
+                hs.setNumRooms(searchObject.getNumRooms());
+                hs.setTotalPrice(searchObject.getNumRooms() * rs.getInt("roomPrice"));
 
                 hotelStays[spot] = hs;
                 spot++;
@@ -106,8 +106,8 @@ public class HotelManagement {
 
 
     public boolean bookRoom(HotelStay theRoomToBook, Booking book) {
-        boolean success;
 
+        boolean success;
         try{
 
             connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
@@ -117,8 +117,9 @@ public class HotelManagement {
             String phone = book.getPhone();
             int numrooms = theRoomToBook.getRooms();
             String hotelid = theRoomToBook.getHotelName();
+            int totPrice = theRoomToBook.getTotalPrice();
 
-            String insertStatement = "INSERT INTO Booking VALUES (?,?,?,?,?)";
+            String insertStatement = "INSERT INTO Booking VALUES (?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = connection.prepareStatement(insertStatement);
 
@@ -127,9 +128,11 @@ public class HotelManagement {
             prepStmt.setString(3, phone);
             prepStmt.setInt(4, numrooms);
             prepStmt.setString(5, hotelid);
+            prepStmt.setInt(6, totPrice);
+
 
             prepStmt.executeUpdate();
-            //hehe
+
 
             connection.close();
             success = true;
@@ -167,9 +170,8 @@ public class HotelManagement {
         manager.book.setEmail("leikjanet@leikjanet.is");
         manager.book.setPhone("111-1111");
         boolean test;
-        test = manager.bookRoom(myhs[0], manager.book);
+        test = manager.bookRoom(myhs[1], manager.book);
         System.out.println(test);
-
 
     }
 

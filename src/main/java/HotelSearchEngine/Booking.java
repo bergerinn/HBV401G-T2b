@@ -17,9 +17,6 @@ public class Booking {
     private String phone;
 
 
-    public Booking() {
-    }
-
 
     public void setName(String name) {
         this.name = name;

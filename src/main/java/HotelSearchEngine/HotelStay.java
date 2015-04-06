@@ -44,7 +44,7 @@ public class HotelStay {
 
 
     public void setNumRooms(int numRooms) {
-
+        this.numRooms = numRooms;
     }
 
     /*
@@ -63,23 +63,10 @@ public class HotelStay {
     }
 
 
+
+
     public String getHotelName() {
         return hotelName;
-    }
-
-
-    public String getLocation() {
-        return location;
-    }
-
-
-    public int getRating() {
-        return rating;
-    }
-
-
-    public String getWiFi() {
-        return wiFi;
     }
 
 
