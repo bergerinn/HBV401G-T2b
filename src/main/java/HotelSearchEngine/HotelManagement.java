@@ -129,7 +129,7 @@ public class HotelManagement {
             prepStmt.setString(5, hotelid);
 
             prepStmt.executeUpdate();
-
+            //hehe
 
             connection.close();
             success = true;
