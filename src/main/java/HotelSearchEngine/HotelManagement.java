@@ -84,7 +84,8 @@ public class HotelManagement {
         HotelManagement manager = new HotelManagement();
         manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
         manager.mysearchQuery.setRating(3);
-        manager.mysearchQuery.setHotelName("Central");
+        manager.mysearchQuery.setHotelName("Grand");
+        manager.mysearchQuery.setWiFi("yes");
         manager.search(manager.mysearchQuery);
     }
 
