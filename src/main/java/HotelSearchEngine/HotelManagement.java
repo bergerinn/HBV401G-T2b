@@ -18,7 +18,7 @@ public class HotelManagement {
 
 
 
-    public HotelStay search(SearchQuery searchObject) {
+    public HotelStay[] search(SearchQuery searchObject) {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
 
@@ -75,10 +75,10 @@ public class HotelManagement {
 
 
             int numResults = countRs.getInt("COUNT(*)");
-            System.out.println(numResults);
 
             hotelStays = new HotelStay[numResults];
 
+            int spot = 0;
             while (rs.next()) {
 
                 HotelStay hs = new HotelStay();
@@ -89,13 +89,17 @@ public class HotelManagement {
                 hs.setNumRooms(rs.getInt("numRooms"));
                 hs.setTotalPrice(rs.getInt("numRooms") * rs.getInt("roomPrice"));
 
-                hotelStays.(hs);
-
-                System.out.println(rs.getString("hotels"));
+                hotelStays[spot] = hs;
+                spot++;
 
             }
 
+            for(int i = 0; i <hotelStays.length; i++){
 
+                System.out.println(hotelStays[i].getHotelName());
+                System.out.println(hotelStays[i].getLocation());
+                System.out.println(hotelStays[i].getTotalPrice());
+            }
 
             prepStmt.close();
             connection.close();
@@ -104,7 +108,7 @@ public class HotelManagement {
             System.exit(0);
         }
 
-        return null;
+        return hotelStays;
     }
 
 
@@ -117,8 +121,8 @@ public class HotelManagement {
         HotelManagement manager = new HotelManagement();
         manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
         manager.mysearchQuery.setRating(3);
-        //manager.mysearchQuery.setHotelName("Grand");
-        manager.mysearchQuery.setWiFi("yes");
+        manager.mysearchQuery.setHotelName("Grand");
+        //manager.mysearchQuery.setWiFi("yes");
         manager.search(manager.mysearchQuery);
     }
 
