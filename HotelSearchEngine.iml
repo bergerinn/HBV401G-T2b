@@ -22,7 +22,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="glassfish-persistence-installer-v1_ur1-b14" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
