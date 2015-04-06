@@ -20,7 +20,7 @@ public class SearchQuery {
     private int rating;
     private String wiFi;
     private int numberOfRooms;
-    private Date checkInTime;
+    //private Date checkInTime;
     //private Date checkOutTime;
     private int totalPrice;
 

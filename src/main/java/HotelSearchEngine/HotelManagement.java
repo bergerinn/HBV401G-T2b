@@ -32,11 +32,12 @@ public class HotelManagement {
 
 
 
-            String selectStatement = "SELECT hotels FROM Hotels WHERE location = ?";
+            String selectStatement = "SELECT hotels FROM Hotels WHERE location = ? AND rating = ? ";
 
             PreparedStatement prepStmt = connection.prepareStatement(selectStatement);
             prepStmt.setString(1, hotellocation);
-            //prepStmt.setString(2, wifi);
+
+
 
             ResultSet rs = prepStmt.executeQuery();
 
@@ -65,7 +66,7 @@ public class HotelManagement {
 
         HotelManagement manager = new HotelManagement();
         manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
-        manager.mysearchQuery.setWiFi("no");
+        manager.mysearchQuery.setRating(5);
         manager.search(manager.mysearchQuery);
     }
 
