@@ -3,12 +3,12 @@ package HotelSearchEngine;
 
 import java.sql.*;
 
+
 /**
  * Created by Andri on 05/03/15.
  */
 public class HotelManagement {
 
-    //mmm
     Connection connection;
 
     private SearchQuery mysearchQuery;
@@ -21,23 +21,40 @@ public class HotelManagement {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
 
-            String hotelname = searchObject.getHotelName();
             String hotellocation = searchObject.getHotelLocation();
-            int rating = searchObject.getRating();
-            String wifi = searchObject.getHasWiFi();
             int numrooms = searchObject.getNumRooms();
-            int totalprice = searchObject.getTotalPrice();
+
+            int rating = searchObject.getRating();
+            String hotelname = searchObject.getHotelName();
+            String wifi = searchObject.getHasWiFi();
 
 
+            String selectStatement = "SELECT hotels FROM Hotels WHERE location = ? AND numRooms >= ?";
 
-
-
-            String selectStatement = "SELECT hotels FROM Hotels WHERE location = ? AND rating = ? ";
+            if(rating != 0) {
+                selectStatement = selectStatement + "AND rating >= ?";
+            }
+            if(hotelname != null) {
+                selectStatement = selectStatement + "AND hotels = ?";
+            }
+            if(wifi != null) {
+                selectStatement = selectStatement + "AND wifi = ?";
+            }
 
             PreparedStatement prepStmt = connection.prepareStatement(selectStatement);
             prepStmt.setString(1, hotellocation);
+            prepStmt.setInt(2, numrooms);
 
 
+            if(rating != 0){
+                prepStmt.setInt(3, rating);
+            }
+            if(hotelname != null){
+                prepStmt.setString(4, hotelname);
+            }
+            if(wifi != null){
+                prepStmt.setString(5, wifi);
+            }
 
             ResultSet rs = prepStmt.executeQuery();
 
@@ -66,7 +83,8 @@ public class HotelManagement {
 
         HotelManagement manager = new HotelManagement();
         manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
-        manager.mysearchQuery.setRating(5);
+        manager.mysearchQuery.setRating(3);
+        manager.mysearchQuery.setHotelName("Central");
         manager.search(manager.mysearchQuery);
     }
 
