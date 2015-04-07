@@ -9,7 +9,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="library" name="sqlite-jdbc-3.8.7" level="application" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
@@ -24,5 +23,16 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="glassfish-persistence-installer-v1_ur1-b14" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/sqlite-jdbc-3.8.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/sqlite-jdbc-3.8.7.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
