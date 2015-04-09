@@ -6,6 +6,7 @@ package HotelSearchEngine;
 
 import java.util.*;
 import java.sql.*;
+import java.util.Date;
 
 
 public class SearchQuery {
@@ -16,14 +17,16 @@ public class SearchQuery {
     private int rating;
     private String wiFi;
     private int numberOfRooms;
-    //private Date checkInTime;
-    //private Date checkOutTime;
+    private Date checkInTime;
+    private Date checkOutTime;
 
 
-    public SearchQuery(String loc, int numrooms) {
+    public SearchQuery(String loc, int numrooms, Date checkin, Date checkout) {
 
         this.location = loc;
         this.numberOfRooms = numrooms;
+        this.checkInTime = checkin;
+        this.checkOutTime = checkout;
 
         this.hotelName = null;
         this.rating = 0;
@@ -31,31 +34,19 @@ public class SearchQuery {
     }
 
 
-    public void setHotelName(String name) {
-        this.hotelName = name;
-    }
-
     public void setRating(int rating) {
         this.rating = rating;
     }
 
-    public void setWiFi(String yesOrNo) {
-        this.wiFi = yesOrNo;
+    public void setHotelName(String name) {
+        this.hotelName = name;
+    }
+
+    public void setWiFi(String yesOrno) {
+        this.wiFi = yesOrno;
     }
 
 
-    /*public void setCheckInTime(Date time) {
-        this.checkInTime = time;
-    }
-    /*
-
-    /**
-     * @param time
-     */
-    /*public void setCheckOutTime(Date time) {
-        this.checkOutTime = time;
-    }
-    */
 
     public String getHotelName(){
         return this.hotelName;
@@ -77,4 +68,18 @@ public class SearchQuery {
         return this.numberOfRooms;
     }
 
+    public Date getCheckInTime(){
+       return this.checkInTime;
+    }
+
+    public Date getCheckOutTime(){
+        return this.checkOutTime;
+    }
+
+
+    public static void main(String[] args){
+        Date what = new Date();
+        System.out.println(what);
+    }
 }
+

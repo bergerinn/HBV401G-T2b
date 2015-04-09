@@ -2,6 +2,8 @@ package HotelSearchEngine;
 
 
 import java.sql.*;
+import java.util.Date;
+import java.text.*;
 import java.util.*;
 
 
@@ -87,6 +89,8 @@ public class HotelManagement {
                 hs.setWiFi(rs.getString("wifi"));
                 hs.setNumRooms(searchObject.getNumRooms());
                 hs.setTotalPrice(searchObject.getNumRooms() * rs.getInt("roomPrice"));
+                hs.setCheckInTime(searchObject.getCheckInTime());
+                hs.setCheckOutTime(searchObject.getCheckOutTime());
 
                 hotelStays[spot] = hs;
                 spot++;
@@ -119,7 +123,13 @@ public class HotelManagement {
             String hotelid = theRoomToBook.getHotelName();
             int totPrice = theRoomToBook.getTotalPrice();
 
-            String insertStatement = "INSERT INTO Booking VALUES (?,?,?,?,?,?)";
+            SimpleDateFormat ft = new SimpleDateFormat("E dd.MM.yyyy");
+            String checkin = ft.format(theRoomToBook.getCheckInTime());
+            String checkout = ft.format(theRoomToBook.getCheckOutTime());
+
+
+
+            String insertStatement = "INSERT INTO Booking VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = connection.prepareStatement(insertStatement);
 
@@ -129,6 +139,8 @@ public class HotelManagement {
             prepStmt.setInt(4, numrooms);
             prepStmt.setString(5, hotelid);
             prepStmt.setInt(6, totPrice);
+            prepStmt.setString(7, checkin);
+            prepStmt.setString(8, checkout);
 
 
             prepStmt.executeUpdate();
@@ -149,10 +161,12 @@ public class HotelManagement {
     public static void main(String[] args) {
 
         HotelManagement manager = new HotelManagement();
-        manager.mysearchQuery = new SearchQuery("Reykjavík", 5);
+        Date chkin = new Date();
+        Date chkout = new Date();
+        manager.mysearchQuery = new SearchQuery("Reykjavík", 5, chkin, chkout);
         manager.mysearchQuery.setRating(3);
-        //manager.mysearchQuery.setHotelName("Grand");
-        //manager.mysearchQuery.setWiFi("yes");
+        manager.mysearchQuery.setHotelName("Grand");
+        manager.mysearchQuery.setWiFi("yes");
 
         HotelStay[] myhs;
         myhs = manager.search(manager.mysearchQuery);
@@ -170,7 +184,7 @@ public class HotelManagement {
         manager.book.setEmail("leikjanet@leikjanet.is");
         manager.book.setPhone("111-1111");
         boolean test;
-        test = manager.bookRoom(myhs[1], manager.book);
+        test = manager.bookRoom(myhs[0], manager.book);
         System.out.println(test);
 
     }

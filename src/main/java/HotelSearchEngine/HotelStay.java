@@ -16,8 +16,8 @@ public class HotelStay {
     private int rating;
     private String wiFi;
     private int numRooms;
-    //private Date checkInTime;
-    //private Date checkOutTime;
+    private Date checkInTime;
+    private Date checkOutTime;
     private int totalPrice;
 
     public HotelStay() {
@@ -47,7 +47,7 @@ public class HotelStay {
         this.numRooms = numRooms;
     }
 
-    /*
+
     public void setCheckInTime(Date time) {
         this.checkInTime = time;
     }
@@ -56,7 +56,7 @@ public class HotelStay {
     public void setCheckOutTime(Date time) {
         this.checkOutTime = time;
     }
-    */
+
 
     public void setTotalPrice(int price) {
         this.totalPrice = price;
@@ -74,7 +74,7 @@ public class HotelStay {
         return numRooms;
     }
 
-    /*
+
     public Date getCheckInTime() {
         return checkInTime;
     }
@@ -82,7 +82,7 @@ public class HotelStay {
     public Date getCheckOutTime() {
         return checkOutTime;
     }
-    */
+
 
     public int getTotalPrice() {
         return totalPrice;
