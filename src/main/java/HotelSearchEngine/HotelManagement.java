@@ -3,8 +3,8 @@ package HotelSearchEngine;
 
 import java.sql.*;
 import java.util.Date;
-import java.text.*;
 import java.util.*;
+
 
 
 /**
@@ -21,6 +21,7 @@ public class HotelManagement {
 
 
     public HotelStay[] search(SearchQuery searchObject) {
+        HotelStay[] improvedHotelStay = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
 
@@ -31,7 +32,7 @@ public class HotelManagement {
             String wifi = searchObject.getHasWiFi();
 
 
-            String selectStatement = "SELECT * FROM Hotels WHERE location = ? AND numRooms >= ?";
+            String selectStatement = "SELECT * FROM Hotels WHERE location = ? ";
 
             if(rating != 0) {
                 selectStatement = selectStatement + " AND rating >= ?";
@@ -50,12 +51,10 @@ public class HotelManagement {
             PreparedStatement countPrepStmt = connection.prepareStatement(countStatement);
 
             prepStmt.setString(1, hotellocation);
-            prepStmt.setInt(2, numrooms);
             countPrepStmt.setString(1, hotellocation);
-            countPrepStmt.setInt(2, numrooms);
 
 
-            int rightNumber = 2;
+            int rightNumber = 1;
             if(rating != 0){
                 rightNumber++;
                 prepStmt.setInt(rightNumber, rating);
@@ -97,6 +96,19 @@ public class HotelManagement {
 
             }
 
+            List<HotelStay> myList = new ArrayList<HotelStay>();
+
+            for(int i = 0; i < hotelStays.length; i++){
+                boolean inOrOut = checkDates(hotelStays[i], hotelStays[i].getRooms());
+                if(inOrOut){
+                    myList.add(hotelStays[i]);
+                }
+            }
+
+            improvedHotelStay = new HotelStay[myList.size()];
+            for(int z = 0; z < myList.size(); z++){
+                improvedHotelStay[z] = myList.get(z);
+            }
 
             prepStmt.close();
             connection.close();
@@ -105,7 +117,53 @@ public class HotelManagement {
             System.exit(0);
         }
 
-        return hotelStays;
+        return improvedHotelStay;
+    }
+
+    public static String dateToString( Date date )
+    {
+        StringBuilder b = new StringBuilder();
+        Formatter f = new Formatter(b);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        f.format ( "%04d%02d%02d"
+                , c.get(Calendar.YEAR)
+                , c.get(Calendar.MONTH)
+                , c.get(Calendar.DAY_OF_MONTH)
+        );
+        return b.toString();
+    }
+
+    public boolean checkDates(HotelStay hs, int numrooms){
+
+        String checkin = dateToString(hs.getCheckInTime());
+        String checkout = dateToString(hs.getCheckOutTime());
+
+        boolean canIcheckIn = true;
+
+
+        try{
+            String selectStatement1 = "SELECT * FROM Available WHERE ? <= date AND date <= ? AND hotel = ?";
+            PreparedStatement prepStmt1 = connection.prepareStatement(selectStatement1);
+            prepStmt1.setString(1, checkin);
+            prepStmt1.setString(2, checkout);
+            prepStmt1.setString(3, hs.getHotelName());
+            ResultSet rs = prepStmt1.executeQuery();
+
+            while(rs.next()){
+                int roomsavail = rs.getInt("roomsAvail");
+                if(roomsavail < numrooms){
+                    canIcheckIn = false;
+                }
+
+            }
+        }
+
+        catch(Exception e){
+
+        }
+
+        return canIcheckIn;
     }
 
 
@@ -123,9 +181,27 @@ public class HotelManagement {
             String hotelid = theRoomToBook.getHotelName();
             int totPrice = theRoomToBook.getTotalPrice();
 
-            SimpleDateFormat ft = new SimpleDateFormat("E dd.MM.yyyy");
-            String checkin = ft.format(theRoomToBook.getCheckInTime());
-            String checkout = ft.format(theRoomToBook.getCheckOutTime());
+            String checkin = dateToString(theRoomToBook.getCheckInTime());
+            String checkout = dateToString(theRoomToBook.getCheckOutTime());
+
+            String selectStatement1 = "SELECT * FROM Available WHERE ? <= date AND date <= ? AND hotel = ?";
+            PreparedStatement prepStmt1 = connection.prepareStatement(selectStatement1);
+            prepStmt1.setString(1, checkin);
+            prepStmt1.setString(2, checkout);
+            prepStmt1.setString(3, theRoomToBook.getHotelName());
+            ResultSet rs = prepStmt1.executeQuery();
+
+
+            while(rs.next()){
+                String updateStatement = "UPDATE Available set roomsAvail = ? WHERE  date = ? AND hotel = ?";
+                PreparedStatement updatePrep = connection.prepareStatement(updateStatement);
+                int difference = rs.getInt("roomsAvail") - numrooms;
+                updatePrep.setInt(1, difference);
+                updatePrep.setString(2, rs.getString("date"));
+                updatePrep.setString(3, theRoomToBook.getHotelName());
+                updatePrep.executeUpdate();
+            }
+
 
 
 
@@ -158,26 +234,30 @@ public class HotelManagement {
         return success;
     }
 
+
+
     public static void main(String[] args) {
 
+
+        /*
         HotelManagement manager = new HotelManagement();
-        Date chkin = new Date();
-        Date chkout = new Date();
-        manager.mysearchQuery = new SearchQuery("Reykjavík", 5, chkin, chkout);
+        Date chkin = new Date(2015-1900, 04, 13);
+        Date chkout = new Date(2015-1900, 04, 20);
+        manager.mysearchQuery = new SearchQuery("Reykjavík", 11, chkin, chkout);
         manager.mysearchQuery.setRating(3);
-        manager.mysearchQuery.setHotelName("Grand");
+        //manager.mysearchQuery.setHotelName("Grand");
         manager.mysearchQuery.setWiFi("yes");
 
         HotelStay[] myhs;
         myhs = manager.search(manager.mysearchQuery);
 
-        /*
+
         for(int i = 0; i<myhs.length; i++){
             System.out.println(myhs[i].getHotelName());
             System.out.println(myhs[i].getRating());
             System.out.println(myhs[i].getWiFi());
         }
-        */
+
 
         manager.book = new Booking();
         manager.book.setName("Kári");
@@ -187,7 +267,81 @@ public class HotelManagement {
         test = manager.bookRoom(myhs[0], manager.book);
         System.out.println(test);
 
-    }
+        */
+        /*
+        String[] hotels = {
+                "Grand",
+                "Hótel Akureyri",
+                "Central",
+                "Loftleiðir",
+                "Holt",
+                "Hótel Ísafjörður",
+                "Hótel Egill",
+                "Hótel Saga",
+                "Hótel KEA",
+                "Sveinbjarnargerði"
+        };
 
+        String[] months = {
+                "201504",
+                "201505",
+                "201506",
+                "201507",
+                "201508",
+                "201509",
+                "201510",
+                "201511",
+                "201512",
+                "201601",
+                "201602",
+                "201603",
+                "201604"
+        };
+
+        try{
+            manager.connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
+            String ble = new String();
+            for(int z = 0;z<10;z++){
+                for(int k = 0; k<13 ; k++){
+                    for(int i = 1; i < 32 ; i++){
+
+                        if(i<10){
+                             ble = "0" + i;
+                        }
+                        else{
+                             ble = "" + i;
+                        }
+                        String date = months[k] + ble;
+
+                        String insertStatement = "INSERT INTO Available VALUES (?,?,?)";
+
+                        PreparedStatement prepStmt = manager.connection.prepareStatement(insertStatement);
+
+                        String rhot = hotels[z];
+                        prepStmt.setString(1, rhot);
+                        prepStmt.setString(2, date);
+                        double numr = 100*Math.random();
+                        int kast = (int) numr;
+                        prepStmt.setInt(3, kast);
+
+
+                        prepStmt.executeUpdate();
+
+                    }
+
+                }
+            }
+
+
+            manager.connection.close();
+
+        }
+        catch(Exception e){
+
+        }
+
+        */
+
+    }
 
 }

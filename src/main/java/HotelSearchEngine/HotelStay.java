@@ -69,6 +69,9 @@ public class HotelStay {
         return hotelName;
     }
 
+    public String getWiFi(){return wiFi;}
+
+    public int getRating(){return rating;}
 
     public int getRooms() {
         return numRooms;
