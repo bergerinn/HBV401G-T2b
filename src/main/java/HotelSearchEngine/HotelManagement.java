@@ -4,7 +4,7 @@ package HotelSearchEngine;
 import java.sql.*;
 import java.util.Date;
 import java.util.*;
-
+import java.util.concurrent.Exchanger;
 
 
 /**
@@ -239,14 +239,14 @@ public class HotelManagement {
     public static void main(String[] args) {
 
 
-        /*
-        HotelManagement manager = new HotelManagement();
-        Date chkin = new Date(2015-1900, 04, 13);
-        Date chkout = new Date(2015-1900, 04, 20);
-        manager.mysearchQuery = new SearchQuery("Reykjavík", 11, chkin, chkout);
-        manager.mysearchQuery.setRating(3);
+
+        //HotelManagement manager = new HotelManagement();
+        /*Date chkin = new Date(2015-1900, 06, 20);
+        Date chkout = new Date(2015-1900, 07, 15);
+        manager.mysearchQuery = new SearchQuery("Reykjavík", 1, chkin, chkout);
+        //manager.mysearchQuery.setRating(3);
         //manager.mysearchQuery.setHotelName("Grand");
-        manager.mysearchQuery.setWiFi("yes");
+        //manager.mysearchQuery.setWiFi("yes");
 
         HotelStay[] myhs;
         myhs = manager.search(manager.mysearchQuery);
@@ -266,20 +266,35 @@ public class HotelManagement {
         boolean test;
         test = manager.bookRoom(myhs[0], manager.book);
         System.out.println(test);
+*/
 
-        */
-        /*
+
         String[] hotels = {
-                "Grand",
                 "Hótel Akureyri",
+                "Hótel KEA",
+                "Sveinbjarnargerði",
+                "Hótel Norðurland",
+                "Hótel Egill",
+                "Hótel Hérað",
+                "Hótel Hallormsstaður",
+                "Gullsól",
+                "Kolskeggur Inn",
+                "Grand",
                 "Central",
                 "Loftleiðir",
                 "Holt",
-                "Hótel Ísafjörður",
-                "Hótel Egill",
                 "Hótel Saga",
-                "Hótel KEA",
-                "Sveinbjarnargerði"
+                "Hótel Borg",
+                "Hilton Nordica",
+                "Icelandair Natura",
+                "Hótel Tangi",
+                "Hótel Edda",
+                "Gistiheimilið Mávahlíð",
+                "Hótel Ísafjörður",
+                "Við Pollinn",
+                "Hótel Látrabjarg",
+                "Gistiheimilið Lyngholt",
+                "Farm Hostel Ytra Lón"
         };
 
         String[] months = {
@@ -299,10 +314,13 @@ public class HotelManagement {
         };
 
         try{
+            HotelManagement manager = new HotelManagement();
             manager.connection = DriverManager.getConnection("jdbc:sqlite:Hotels.db");
             String ble = new String();
-            for(int z = 0;z<10;z++){
-                for(int k = 0; k<13 ; k++){
+            for(int z = 0;z<25;z++){
+
+                for(int k = 0; k<13; k++){
+
                     for(int i = 1; i < 32 ; i++){
 
                         if(i<10){
@@ -324,7 +342,6 @@ public class HotelManagement {
                         int kast = (int) numr;
                         prepStmt.setInt(3, kast);
 
-
                         prepStmt.executeUpdate();
 
                     }
@@ -337,11 +354,10 @@ public class HotelManagement {
 
         }
         catch(Exception e){
-
+            System.out.println(e.getMessage());
         }
 
-        */
-
     }
+
 
 }
